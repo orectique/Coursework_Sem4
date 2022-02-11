@@ -1,0 +1,55 @@
+---
+title: "Statistical Inference Theory - Lab 1"
+output: html_notebook
+---
+
+#### CB.SC.I5DAS20032
+
+```{r}
+df <- USArrests
+df
+```
+```{r}
+nrow(df)
+ncol(df)
+```
+
+```{r}
+head(df)
+```
+```{r}
+mean(df$Murder)
+median(df$UrbanPop)
+quantile(df$Assault)
+range(df$Rape)
+```
+```{r}
+cov(df)
+```
+```{r}
+cor(df)
+```
+```{r}
+movies <- read.csv('rottenTomatoesMovies100.csv')
+names(movies)
+summary(movies)
+```
+```{r}
+movies$ReviewBin <- cut(movies$No..of.Reviews, 5) 
+head(movies$ReviewBin)
+```
+
+
+```{r}
+animation <- subset(movies, movies$Genre == 'Animation')
+animation
+```
+```{r}
+highRank <- subset(movies, movies$RatingTomatometer == '100%')
+genreTable <- table(highRank$Genre)
+pie(genreTable)
+``````
+```{r}
+hist(highRank$No..of.Reviews, col = 'blue', border = 'grey')
+```
+
