@@ -1,0 +1,47 @@
+---
+title: "Statistical Inference Theory - Lab 2"
+output:
+  pdf_document: default
+  html_notebook: default
+---
+
+### CB.SC.I5DAS20032
+
+```{r}
+sample(5: 60, 10, replace = TRUE)
+
+as.vector(outer(1:6, 1:6, paste))
+
+sample(c('Yes', 'No'), 10, replace = TRUE, prob = c(0.45, 55))
+```
+```{r}
+factorial(5)
+
+choose(10, 4)
+
+choose(6, 1:6)
+```
+
+```{r}
+library(prob)
+
+tosscoin(5)
+
+rolldie(2, makespace = TRUE)
+```
+
+#### p(x) = nCx \* p^x \* (1-p)^(n-x) 
+
+```{r}
+dbinom(4, 12, 0.2)
+
+sum(dbinom(0:4, 12, 0.2))
+
+pbinom(4, 12, 0.2)
+
+```
+
+```{r}
+
+```
+
