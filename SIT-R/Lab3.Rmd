@@ -1,0 +1,48 @@
+---
+title: "Statistical Inference Theory - Lab 3"
+output: html_notebook
+---
+
+### CB.SC.I5DAS20032
+
+#### Poisson Distribution
+
+```{r}
+plot(dpois(x = 1:10, lambda = 2), type = 'l',  main = 'Poisson Distribution')
+
+plot(ppois(q = 1:10, lambda = 2), type = 'l',  main = 'Poisson Distribution - Cumulative')
+```
+```{r}
+ppois(q = 3, lambda = 2, lower.tail = FALSE)
+```
+
+```{r}
+x = 0:100
+p = dpois(x, 4)
+
+ex = sum(x*p)
+
+var = sum((x -ex)^2 * p)
+
+var
+
+round(dpois(0:10, 2), 3)
+```
+
+#### Normal Distribution
+
+```{r}
+x = seq(-20, 20, by = 0.1)
+y = dnorm(x, mean(x), sd(x))
+plot(x, y, type = 'l', main = 'Normal Distribution')
+```
+
+```{r}
+x = seq(0, 1, by = 0.2)
+y = qnorm(x, mean(x), sd(x))
+plot(x, y, type = 'l', main = 'Normal Distribution')
+```
+```{r}
+hist(rnorm(1000, mean = 5, sd = 2.5), breaks = 30)
+```
+
