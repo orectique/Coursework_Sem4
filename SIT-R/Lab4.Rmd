@@ -1,0 +1,58 @@
+---
+title: "Statistical Inference Theory - Lab 4"
+output: html_notebook
+---
+
+### CB.SC.I5DAS20032
+
+```{r}
+x = seq(-3, 3, length = 200)
+y = dnorm(x, mean = 0, sd = 1)
+plot(x, y, type = 'l')
+```
+
+```{r}
+qnorm(0.95)
+qnorm(0.975)
+```
+
+
+```{r}
+library(MASS)
+
+head(survey)
+```
+
+
+```{r}
+height.survey = survey$Height
+
+mean(height.survey, na.rm = TRUE)
+
+```
+
+
+```{r}
+n = length(height.survey)
+
+sigma = 9.48
+
+sem = sigma/sqrt(n)
+
+sem
+```
+
+
+```{r}
+qnorm(0.959964)
+
+E = qnorm(0.975)*sem
+
+xbar = mean(height.survey, na.rm = TRUE)
+```
+
+
+```{r}
+xbar + c(-E, E)
+```
+
