@@ -1,0 +1,65 @@
+create table salesman(
+Salesman_id int primary key,
+name_ varchar(50),
+S_city varchar(25),
+commission float
+);
+
+insert into salesman values (1, 'Tom', 'New York', 0.15);
+insert into salesman values (2, 'Shyam', 'Paris', 0.13);
+insert into salesman values (5, 'Teena', 'London', 0.11);
+insert into salesman values (6, 'Reena', 'Paris', 0.14);
+insert into salesman values (7, 'Ram', 'Rome', 0.13);
+insert into salesman values (3, 'Sheela', 'San Jose', 0.12);
+
+create table customer(
+Customer_id int primary key,
+Cust_name varchar(50),
+c_city varchar(50),
+grade int,
+Salesman_id int references salesman
+);
+
+insert into customer values (12, 'Arun', 'New York', 100, 1);
+insert into customer values (17, 'Varun', 'New York', 200, 1);
+insert into customer values (15, 'Anu', 'California', 200, 2);
+insert into customer values (18, 'Aparna', 'London', 300, 2);
+insert into customer values (14, 'Vidya', 'Paris', 300, 6);
+insert into customer values (19, 'Samuel', 'Berlin', 100, 3);
+insert into customer values (13, 'Sheela', 'Moscow', 200, 7);
+insert into customer values (21, 'Chris', 'Berlin', 300, 7);
+
+select salesman.Salesman_id, salesman.name_, customer.Cust_name 
+from salesman full outer join customer 
+on salesman.S_city = customer.c_city
+where salesman.S_city is not null and customer.c_city is not null;
+
+select salesman.Salesman_id, salesman.name_
+from salesman full outer join customer 
+on salesman.Salesman_id = customer.Salesman_id
+where customer.Cust_name is null;
+
+select salesman.Salesman_id, salesman.name_, customer.Cust_name 
+from salesman full outer join customer 
+on salesman.S_city = customer.c_city
+where salesman.S_city is not null and customer.c_city is not null;
+
+create view nyc as
+select customer.Cust_name, customer.c_city, salesman.name_
+from customer full outer join salesman
+on salesman.Salesman_id = customer.Salesman_id
+where customer.c_city = 'New York';
+
+select * from nyc;
+
+select salesman.Salesman_id, salesman.name_, salesman.S_city
+from salesman full outer join customer 
+on salesman.Salesman_id = customer.Salesman_id
+where customer.Cust_name is null and salesman.S_city = 'London';
+
+
+
+
+
+
+
