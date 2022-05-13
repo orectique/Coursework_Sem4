@@ -1,0 +1,66 @@
+---
+title: "Statistical Inference Theory - Lab 9"
+output: html_notebook
+---
+
+#### CB.SC.I5DAS20032
+
+## Problem 1
+
+In order to determine the possible effect of a chemical treatment on the rate of germination of cotton seeds, a pot culture was conducted. The results are given below. Significance at 0.05.
+
+## Solution
+
+```{r}
+Sample2 = matrix(c(118, 120, 22, 40), nrow = 2, ncol = 2)
+
+Sample2
+```
+
+```{r}
+chisq.test(Sample2)
+```
+As p = 0.06596 > 0.05, h0: Attributes are independent is **not rejected**.
+
+
+## Problem 2
+
+The severity of a disease and blood group were studied in a research project.
+
+```{r}
+DisxBlood = matrix(c(51, 105, 384, 40, 103, 527, 10, 25, 125, 9, 17, 104), nrow = 3, ncol = 4)
+
+DisxBlood
+```
+### Solution
+
+```{r}
+chisq.test(DisxBlood)
+```
+As p = 0.2003 > 0.05, h0: Attributes are independent is **not rejected**.
+
+```{r}
+qchisq(0.95, df = 6)
+```
+As chisq = 12.237 < chisq(table) = 12.59159, h0: Attributes are independent is **not rejected**.
+
+## Problem 3
+
+A public opinion poll surveyed a simple random sample of 1000 voters.
+
+```{r}
+GenxParty = matrix(c(220, 270, 170, 320, 70, 70), nrow = 2, ncol = 3)
+
+GenxParty
+```
+### Solution
+
+```{r}
+chisq.test(GenxParty)
+```
+As p = 0.0003688 < 0.05, h0: Attributes are independent is **rejected**.
+
+```{r}
+qchisq(0.95, df = 2)
+```
+As chisq = 15.81 < chisq(table) = 5.991465, h0: Attributes are independent is **rejected**.

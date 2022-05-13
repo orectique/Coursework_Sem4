@@ -1,0 +1,86 @@
+---
+title: "Statistical Inference Theory - Lab 8"
+output: html_notebook
+---
+
+#### CB.SC.I5DAS20032
+
+## Problem 1
+
+A school of athletes has been taken a new instructor and want to test the effectiveness of the new type of training proposed by comparing the average time of 10 runners in the 200 meters and the time in seconds before and after training for each athletes is given below.
+
+Before Training : 13.8,14.4,13.7,16.5,18.1,20.1,13.5,16.2,15.3,12.2
+
+After Training : 13.6,14.5,12.9,16.1,17.7,20.912.9,16.8,16.9,12.0
+
+### Solution
+
+```{r}
+x = c(13.8,14.4,13.7,16.5,18.1,20.1,13.5,16.2,15.3,12.2)
+y = c(13.6,14.5,12.9,16.1,17.7,20.9,12.9,16.8,16.9,12.0)
+
+t.test(x,y, paired=TRUE)
+```
+As p = 0.8358 > 0.05, h0: m1 - m2 = 0 is **not rejected**.
+
+## Problem 2
+
+A firm manufacturing rivers wants to limit variations in their length as much as possible. The lengths(in cm) of 10 rivers manufactured by a new process are given as :
+
+2.15,1.99,2.05,2.12,2.17,2.01,1.98,2.03,2.25,1.93  
+  
+Examine whether the new process can be considered superior to the old, if the old population has standard deviation 0.145 cm.
+
+### Solution
+
+```{r}
+x = c(2.15,1.99,2.05,2.12,2.17,2.01,1.98,2.03,2.25,1.93)
+n = 10
+df = n-1
+sigma0 = 0.145
+v = var(x)
+
+v
+
+chitest = df*v/(sigma0^2)
+
+chitest
+```
+```{r}
+alpha = 0.05
+
+qchisq(alpha,df, lower.tail=TRUE)
+```
+As 4.326278 > 3.325113 , h0 is **not rejected**.
+
+```{r}
+alpha = 0.01
+
+qchisq(alpha,df, lower.tail=TRUE)
+```
+As 4.326278 > 2.087901 , h0 is **not rejected**.
+
+## Problem 3
+
+The following shows the distribution of the digits in the number chosen random from a telephone directory:  
+Frequency : 3026,3107,2997,2996,3075,2933,3107,2972,2964,2853
+
+Expected : 3000,3000,3000,3000,3000,3000,3000,3000,3000,3000  
+
+### Solution
+
+```{r}
+frequency = c(3026,3107,2997,2996,3075,2933,3107,2972,2964,2853)
+expected = c(3000,3000,3000,3000,3000,3000,3000,3000,3000,3000)
+
+
+chisq.test(frequency, p= expected, rescale.p = TRUE)
+```
+
+```{r}
+p = c(0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1)
+
+
+chisq.test(frequency,p=p)
+```
+
