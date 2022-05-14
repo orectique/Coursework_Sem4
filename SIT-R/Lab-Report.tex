@@ -1,0 +1,1569 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Statistical Inference Theory - Lab Report},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\title{Statistical Inference Theory - Lab Report}
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+\maketitle
+
+\hypertarget{covariance}{%
+\section{Covariance}\label{covariance}}
+
+The covariance of two variables x and y in a data set measures how the
+two are linearly related. A positive covariance would indicate a
+positive linear relationship between the variables, and a negative
+covariance would indicate the opposite.
+
+The sample covariance is defined in terms of the sample means as:
+
+Cov = Sum( (xi - xBar)(yi - yBar) ) / ( n - 1 )
+
+Similarly, the population covariance is defined in terms of the
+population mean μx, μy as:
+
+Cov = Sum( (xi - μx)(yi - μy) ) / N
+
+\hypertarget{problem}{%
+\subsection{Problem}\label{problem}}
+
+Find the covariance of eruption duration and waiting time in the data
+set faithful. Observe if there is any linear relationship between the
+two variables.
+
+\hypertarget{solution}{%
+\subsubsection{Solution}\label{solution}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{duration }\OtherTok{=}\NormalTok{ faithful}\SpecialCharTok{$}\NormalTok{eruptions}
+\NormalTok{waiting }\OtherTok{=}\NormalTok{ faithful}\SpecialCharTok{$}\NormalTok{waiting}
+
+\FunctionTok{cov}\NormalTok{(duration, waiting)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 13.97781
+\end{verbatim}
+
+\hypertarget{correlation}{%
+\section{Correlation}\label{correlation}}
+
+The correlation coefficient of two variables in a data set equals to
+their covariance divided by the product of their individual standard
+deviations. It is a normalized measurement of how the two are linearly
+related.
+
+Formally, the sample correlation coefficient is defined by the following
+formula, where sx and sy are the sample standard deviations, and sxy is
+the sample covariance.
+
+r = sxy/(sx * sy)
+
+Similarly, the population correlation coefficient is defined as follows,
+where σx and σy are the population standard deviations, and σxy is the
+population covariance.
+
+rho = σxy/(σx * σy)
+
+If the correlation coefficient is close to 1, it would indicate that the
+variables are positively linearly related and the scatter plot falls
+almost along a straight line with positive slope. For -1, it indicates
+that the variables are negatively linearly related and the scatter plot
+almost falls along a straight line with negative slope. And for zero, it
+would indicate a weak linear relationship between the variables.
+
+\hypertarget{problem-1}{%
+\subsection{Problem}\label{problem-1}}
+
+Find the correlation coefficient of eruption duration and waiting time
+in the data set faithful. Observe if there is any linear relationship
+between the variables.
+
+\hypertarget{solution-1}{%
+\subsubsection{Solution}\label{solution-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cor}\NormalTok{(duration, waiting)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.9008112
+\end{verbatim}
+
+\hypertarget{binomial-distribution}{%
+\section{Binomial Distribution}\label{binomial-distribution}}
+
+The binomial distribution is a discrete probability distribution. It
+describes the outcome of n independent trials in an experiment. Each
+trial is assumed to have only two outcomes, either success or failure.
+If the probability of a successful trial is p, then the probability of
+having x successful outcomes in an experiment of n independent trials is
+as follows.
+
+f(x) = nCx * p\^{}x * (1 - p)\^{}(n-x)
+
+\hypertarget{problem-2}{%
+\subsection{Problem}\label{problem-2}}
+
+Suppose there are twelve multiple choice questions in an English class
+quiz. Each question has five possible answers, and only one of them is
+correct. Find the probability of having four or less correct answers if
+a student attempts to answer every question at random.
+
+\hypertarget{solution-2}{%
+\subsubsection{Solution}\label{solution-2}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{pbinom}\NormalTok{(}\DecValTok{4}\NormalTok{, }\AttributeTok{size =} \DecValTok{12}\NormalTok{, }\AttributeTok{prob =} \FloatTok{0.2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.9274445
+\end{verbatim}
+
+\hypertarget{poisson-distribution}{%
+\section{Poisson Distribution}\label{poisson-distribution}}
+
+The Poisson distribution is the probability distribution of independent
+event occurrences in an interval. If λ is the mean occurrence per
+interval, then the probability of having x occurrences within a given
+interval is:
+
+f(x) = λ\^{}x * e\^{}(- λ) / x!
+
+\hypertarget{problem-3}{%
+\subsection{Problem}\label{problem-3}}
+
+If there are twelve cars crossing a bridge per minute on average, find
+the probability of having seventeen or more cars crossing the bridge in
+a particular minute.
+
+\hypertarget{solution-3}{%
+\subsubsection{Solution}\label{solution-3}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ppois}\NormalTok{(}\DecValTok{16}\NormalTok{, }\AttributeTok{lambda =} \DecValTok{12}\NormalTok{, }\AttributeTok{lower =} \ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.101291
+\end{verbatim}
+
+\hypertarget{normal-distribution}{%
+\section{Normal Distribution}\label{normal-distribution}}
+
+The normal distribution is defined by the following probability density
+function, where μ is the population mean and σ\^{}2 is the variance.
+
+f(x) = e\^{}( -(x - μ)\^{}2 / 2 * σ\^{}2) / σ * sqrt(2 * pi)
+
+\hypertarget{problem-4}{%
+\subsection{Problem}\label{problem-4}}
+
+Assume that the test scores of a college entrance exam fits a normal
+distribution. Furthermore, the mean test score is 72, and the standard
+deviation is 15.2. What is the percentage of students scoring 84 or more
+in the exam?
+
+\hypertarget{solution-4}{%
+\subsubsection{Solution}\label{solution-4}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{pnorm}\NormalTok{(}\DecValTok{84}\NormalTok{, }\AttributeTok{mean =} \DecValTok{72}\NormalTok{, }\AttributeTok{sd =} \FloatTok{15.2}\NormalTok{, }\AttributeTok{lower.tail =} \ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.2149176
+\end{verbatim}
+
+\hypertarget{point-estimation-of-population-mean-and-proportion}{%
+\section{Point Estimation of Population Mean and
+Proportion}\label{point-estimation-of-population-mean-and-proportion}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(MASS)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{problem-1-1}{%
+\subsection{Problem 1}\label{problem-1-1}}
+
+Find a point estimate of mean university student height with the sample
+data from survey.
+
+\hypertarget{solution-5}{%
+\subsubsection{Solution}\label{solution-5}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{height.survey }\OtherTok{=}\NormalTok{ survey}\SpecialCharTok{$}\NormalTok{Height}
+
+\FunctionTok{mean}\NormalTok{(height.survey, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 172.3809
+\end{verbatim}
+
+\hypertarget{problem-2-1}{%
+\subsection{Problem 2}\label{problem-2-1}}
+
+Find a point estimate of the female student proportion from survey.
+
+\hypertarget{solution-6}{%
+\subsubsection{Solution}\label{solution-6}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gender.response }\OtherTok{=} \FunctionTok{na.omit}\NormalTok{(survey}\SpecialCharTok{$}\NormalTok{Sex)}
+\NormalTok{n }\OtherTok{=} \FunctionTok{length}\NormalTok{(gender.response)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{k }\OtherTok{=} \FunctionTok{sum}\NormalTok{(gender.response }\SpecialCharTok{==} \StringTok{\textquotesingle{}Female\textquotesingle{}}\NormalTok{)}
+
+\NormalTok{k}\SpecialCharTok{/}\NormalTok{n}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.5
+\end{verbatim}
+
+\hypertarget{interval-estimation-of-population-mean-with-known-variance}{%
+\section{Interval Estimation of Population Mean with Known
+Variance}\label{interval-estimation-of-population-mean-with-known-variance}}
+
+For random sample of sufficiently large size, the end points of the
+interval estimate at (1 − α) confidence level is given as follows:
+
+xBar +- zα∕2 * σ / sqrt(n)
+
+\hypertarget{problem-5}{%
+\subsection{Problem}\label{problem-5}}
+
+Assume the population standard deviation σ of the student height in
+survey is 9.48. Find the margin of error and interval estimate at 95\%
+confidence level.
+
+\hypertarget{solution-7}{%
+\subsubsection{Solution}\label{solution-7}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{height.response }\OtherTok{=} \FunctionTok{na.omit}\NormalTok{(survey}\SpecialCharTok{$}\NormalTok{Height)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{n }\OtherTok{=} \FunctionTok{length}\NormalTok{(height.response)}
+
+\NormalTok{sigma }\OtherTok{=} \FloatTok{9.48}
+\NormalTok{se }\OtherTok{=}\NormalTok{ sigma}\SpecialCharTok{/}\FunctionTok{sqrt}\NormalTok{(n)}
+
+\NormalTok{se}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.6557453
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{E }\OtherTok{=} \FunctionTok{qnorm}\NormalTok{(}\FloatTok{0.975}\NormalTok{) }\SpecialCharTok{*}\NormalTok{ se}
+
+\NormalTok{E}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.285237
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean}\NormalTok{(height.response) }\SpecialCharTok{+} \FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{E, E)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 171.0956 173.6661
+\end{verbatim}
+
+\hypertarget{interval-estimation-of-population-mean-with-unknown-variance}{%
+\section{Interval Estimation of Population Mean with Unknown
+Variance}\label{interval-estimation-of-population-mean-with-unknown-variance}}
+
+For random samples of sufficiently large size, and with standard
+deviation s, the end points of the interval estimate at (1 −α)
+confidence level is given as follows:
+
+xBar +- t(α/2) * s / sqrt(n)
+
+\hypertarget{problem-6}{%
+\subsection{Problem}\label{problem-6}}
+
+Without assuming the population standard deviation of the student height
+in survey, find the margin of error and interval estimate at 95\%
+confidence level.
+
+\hypertarget{solution-8}{%
+\subsection{Solution}\label{solution-8}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{n }\OtherTok{=} \FunctionTok{length}\NormalTok{(height.response)}
+
+\NormalTok{s }\OtherTok{=} \FunctionTok{sd}\NormalTok{(height.response)}
+\NormalTok{se }\OtherTok{=}\NormalTok{ s}\SpecialCharTok{/}\FunctionTok{sqrt}\NormalTok{(n)}
+
+\NormalTok{se}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.6811677
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{E }\OtherTok{=} \FunctionTok{qt}\NormalTok{(}\FloatTok{0.975}\NormalTok{, }\AttributeTok{df =}\NormalTok{ n }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{)}\SpecialCharTok{*}\NormalTok{se}
+
+\NormalTok{E}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.342878
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean}\NormalTok{(height.response) }\SpecialCharTok{+} \FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{ E, E)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 171.0380 173.7237
+\end{verbatim}
+
+\hypertarget{sample-size-of-population-mean}{%
+\section{Sample Size of Population
+Mean}\label{sample-size-of-population-mean}}
+
+The formula below provides the sample size needed under the requirement
+of population mean interval estimate at (1 −α) confidence level, margin
+of error E, and population variance σ\^{}2. Here, zα∕2 is the 100(1 −
+α∕2) percentile of the standard normal distribution.
+
+n = (zα∕2)\^{}2 * σ\^{}2 / E\^{}2
+
+\hypertarget{problem-7}{%
+\subsection{Problem}\label{problem-7}}
+
+Assume the population standard deviation σ of the student height in
+survey is 9.48. Find the sample size needed to achieve a 1.2 centimeters
+margin of error at 95\% confidence level.
+
+\hypertarget{solution-9}{%
+\subsubsection{Solution}\label{solution-9}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{z }\OtherTok{=} \FunctionTok{qnorm}\NormalTok{(}\FloatTok{0.975}\NormalTok{)}
+\NormalTok{sigma }\OtherTok{=} \FloatTok{9.48}
+
+\NormalTok{E }\OtherTok{=} \FloatTok{1.2}
+
+\NormalTok{(z }\SpecialCharTok{*}\NormalTok{ sigma }\SpecialCharTok{/}\NormalTok{ E)}\SpecialCharTok{\^{}}\DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 239.7454
+\end{verbatim}
+
+\hypertarget{interval-estimation-of-population-proportion}{%
+\section{Interval Estimation of Population
+Proportion}\label{interval-estimation-of-population-proportion}}
+
+If the samples size n and population proportion p satisfy the condition
+that np ≥ 5 and n(1 − p) ≥ 5, than the end points of the interval
+estimate at (1 − α) confidence level is defined in terms of the sample
+proportion as follows.
+
+pBar +- zα∕2 * sqrt( p * (1 - p) / n )
+
+\hypertarget{problem-8}{%
+\subsection{Problem}\label{problem-8}}
+
+Compute the margin of error and estimate interval for the female
+students proportion in survey at 95\% confidence level.
+
+\hypertarget{solution-10}{%
+\subsubsection{Solution}\label{solution-10}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gender.response }\OtherTok{=} \FunctionTok{na.omit}\NormalTok{(survey}\SpecialCharTok{$}\NormalTok{Sex)}
+
+\NormalTok{n }\OtherTok{=} \FunctionTok{length}\NormalTok{(gender.response)}
+\NormalTok{k }\OtherTok{=} \FunctionTok{sum}\NormalTok{(gender.response }\SpecialCharTok{==} \StringTok{\textquotesingle{}Female\textquotesingle{}}\NormalTok{)}
+
+\NormalTok{pbar }\OtherTok{=}\NormalTok{ k}\SpecialCharTok{/}\NormalTok{n}
+
+\NormalTok{pbar}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{se }\OtherTok{=} \FunctionTok{sqrt}\NormalTok{( pbar }\SpecialCharTok{*}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ pbar) }\SpecialCharTok{/}\NormalTok{ n )}
+
+\NormalTok{se}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.03254723
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{E }\OtherTok{=} \FunctionTok{qnorm}\NormalTok{(}\FloatTok{0.975}\NormalTok{) }\SpecialCharTok{*}\NormalTok{ se}
+
+\NormalTok{E}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.06379139
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pbar }\SpecialCharTok{+} \FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{ E, E)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.4362086 0.5637914
+\end{verbatim}
+
+\hypertarget{sample-size-of-population-proportion}{%
+\section{Sample Size of Population
+Proportion}\label{sample-size-of-population-proportion}}
+
+The formula below provides the sample size needed under the requirement
+of population proportion interval estimate at (1 − α) confidence level,
+margin of error E, and planned proportion estimate p.~Here, zα∕2 is the
+100(1 − α∕2) percentile of the standard normal distribution.
+
+n = (zα∕2)\^{}2 * p * (1 - p) / E\^{}2
+
+\hypertarget{problem-9}{%
+\subsection{Problem}\label{problem-9}}
+
+Using a 50\% planned proportion estimate, find the sample size needed to
+achieve 5\% margin of error for the female student survey at 95\%
+confidence level.
+
+\hypertarget{solution-11}{%
+\subsubsection{Solution}\label{solution-11}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{z }\OtherTok{=} \FunctionTok{qnorm}\NormalTok{(}\FloatTok{0.975}\NormalTok{)}
+\NormalTok{p }\OtherTok{=} \FloatTok{0.5}
+
+\NormalTok{E }\OtherTok{=} \FloatTok{0.05}
+
+\NormalTok{p }\SpecialCharTok{*}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ p) }\SpecialCharTok{*}\NormalTok{ (z }\SpecialCharTok{/}\NormalTok{ E)}\SpecialCharTok{\^{}}\DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 384.1459
+\end{verbatim}
+
+\hypertarget{lower-tail-test-of-population-mean-with-known-variance}{%
+\section{Lower Tail Test of Population Mean with Known
+Variance}\label{lower-tail-test-of-population-mean-with-known-variance}}
+
+h0: m \textgreater= m0
+
+z = (xBar - m0) / ( σ / sqrt(n) )
+
+Reject h0 if z \textless= -zα
+
+\hypertarget{problem-10}{%
+\subsection{Problem}\label{problem-10}}
+
+Suppose the manufacturer claims that the mean lifetime of a light is
+more than 10000 hours. In a sample of 30 light bulbs, it was found that
+they only last 9900 hours on average. Assume the population standard
+deviation is 120 hours. At 0.05 significance level, can we reject the
+claim by manufacturer?
+
+\hypertarget{solution-12}{%
+\subsubsection{Solution}\label{solution-12}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{xbar }\OtherTok{=} \DecValTok{9900}
+\NormalTok{n}\OtherTok{=}\DecValTok{30}
+\NormalTok{m0}\OtherTok{=} \DecValTok{10000}  
+\NormalTok{sigma }\OtherTok{=} \DecValTok{120}
+\NormalTok{z }\OtherTok{=}\NormalTok{ (xbar}\SpecialCharTok{{-}}\NormalTok{m0)}\SpecialCharTok{/}\NormalTok{(sigma}\SpecialCharTok{/}\FunctionTok{sqrt}\NormalTok{(n))}
+
+\NormalTok{z}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -4.564355
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a }\OtherTok{=} \FloatTok{0.05} 
+\NormalTok{z.a }\OtherTok{=} \FunctionTok{qnorm}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ a)}
+
+\SpecialCharTok{{-}}\NormalTok{z.a}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -1.644854
+\end{verbatim}
+
+-1.644854 \textgreater{} -4.564355 We \textbf{reject} the null
+hypothesis.
+
+\hypertarget{upper-tail-test-of-population-mean-with-known-variance}{%
+\section{Upper Tail Test of Population Mean with Known
+Variance}\label{upper-tail-test-of-population-mean-with-known-variance}}
+
+h0: m \textless= m0
+
+z = (xBar - m0) / ( σ / sqrt(n) )
+
+Reject h0 if z \textgreater= zα
+
+\hypertarget{problem-11}{%
+\subsection{Problem}\label{problem-11}}
+
+Suppose the food label on a cookie bag states that there is at most 2
+grams of saturated fat in a single cookie. In a sample of 35 cookies, it
+is found that the mean amount of saturated fat per cookie is 2.1 grams.
+Assume that the population standard deviation is 0.25 grams. At 0.05
+significance level, we can reject the claim on the food label.
+
+\hypertarget{solution-13}{%
+\subsubsection{Solution}\label{solution-13}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{n }\OtherTok{=} \DecValTok{35}
+\NormalTok{xbar }\OtherTok{=} \FloatTok{2.1}
+\NormalTok{m0 }\OtherTok{=} \DecValTok{2}
+\NormalTok{sigma }\OtherTok{=} \FloatTok{0.25}
+\NormalTok{z }\OtherTok{=}\NormalTok{ (xbar}\SpecialCharTok{{-}}\NormalTok{m0)}\SpecialCharTok{/}\NormalTok{(sigma}\SpecialCharTok{/}\FunctionTok{sqrt}\NormalTok{(n))}
+
+\NormalTok{z}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.366432
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a }\OtherTok{=} \FloatTok{0.05} 
+\NormalTok{z.a }\OtherTok{=} \FunctionTok{qnorm}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ a)}
+
+\NormalTok{z.a}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.644854
+\end{verbatim}
+
+2.366432 \textgreater{} 1.644854 We \textbf{reject} the null hypothesis.
+
+\hypertarget{two-tailed-test-of-population-mean-with-known-variance}{%
+\section{Two-Tailed Test of Population Mean with Known
+Variance}\label{two-tailed-test-of-population-mean-with-known-variance}}
+
+h0: m = m0
+
+z = (xBar - m0) / ( σ / sqrt(n) )
+
+Reject h0 if z \textgreater= \textbar{} zα \textbar{}
+
+\hypertarget{problem-12}{%
+\subsection{Problem}\label{problem-12}}
+
+Suppose the mean weight of King Penguins found in an Antarctic colony
+last year was 15.4kg. In a sample of 35 penguins at the same time this
+year in the same colony, the mean penguin weight is 14.6kg. Assume the
+population standard deviation is 2.5kg. At 0.05 significance level, can
+we reject the null hypothesis that the mean penguin weight does not
+differ from last year?
+
+\hypertarget{solution-14}{%
+\subsubsection{Solution}\label{solution-14}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{xbar }\OtherTok{=} \FloatTok{14.6}
+\NormalTok{m0 }\OtherTok{=} \FloatTok{15.4}
+\NormalTok{sigma }\OtherTok{=} \FloatTok{2.5}
+\NormalTok{n }\OtherTok{=} \DecValTok{35}
+\NormalTok{z }\OtherTok{=}\NormalTok{ (xbar}\SpecialCharTok{{-}}\NormalTok{m0)}\SpecialCharTok{/}\NormalTok{(sigma}\SpecialCharTok{/}\FunctionTok{sqrt}\NormalTok{(n))}
+
+\NormalTok{z}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -1.893146
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a }\OtherTok{=} \FloatTok{0.05} 
+\NormalTok{z.a }\OtherTok{=} \FunctionTok{qnorm}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ a)}
+
+\FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{z.a, z.a)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -1.644854  1.644854
+\end{verbatim}
+
+-1.644854 \textless= -1.893146 \textless= 1.644854 We \textbf{do not
+reject} the null hypothesis.
+
+\hypertarget{lower-tail-test-of-population-mean-with-unknown-variance}{%
+\section{Lower Tail Test of Population Mean with Unknown
+Variance}\label{lower-tail-test-of-population-mean-with-unknown-variance}}
+
+h0: m \textgreater= m0
+
+t = (xBar - m0) / ( s / sqrt(n) )
+
+Reject h0 if t \textless= -tα
+
+\hypertarget{problem-13}{%
+\subsection{Problem}\label{problem-13}}
+
+Suppose the manufacturer claims that the mean lifetime of a light is
+more than 10000 hours. In a sample of 30 light bulbs, it was found that
+they only last 9900 hours on average. Assume the sample population
+standard deviation is 125 hours. At 0.05 significance level, can we
+reject the claim by manufacturer?
+
+\hypertarget{solution-15}{%
+\subsubsection{Solution}\label{solution-15}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{xbar }\OtherTok{=} \DecValTok{9900}
+\NormalTok{n }\OtherTok{=} \DecValTok{30}
+\NormalTok{m0 }\OtherTok{=} \DecValTok{10000}
+\NormalTok{s }\OtherTok{=} \DecValTok{125}
+\NormalTok{t }\OtherTok{=}\NormalTok{ (xbar }\SpecialCharTok{{-}}\NormalTok{ m0)}\SpecialCharTok{/}\NormalTok{(s}\SpecialCharTok{/}\FunctionTok{sqrt}\NormalTok{(n))}
+
+\NormalTok{t}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -4.38178
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a }\OtherTok{=}\NormalTok{ .}\DecValTok{05}
+\NormalTok{t.a }\OtherTok{=} \FunctionTok{qt}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ a, }\AttributeTok{df =}\NormalTok{ n}\DecValTok{{-}1}\NormalTok{)}
+
+\SpecialCharTok{{-}}\NormalTok{t.a}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -1.699127
+\end{verbatim}
+
+-4.38178 \textless{} -1.699127 We \textbf{reject} the null hypothesis.
+
+\hypertarget{upper-tail-test-of-population-mean-with-unknown-variance}{%
+\section{Upper Tail Test of Population Mean with Unknown
+Variance}\label{upper-tail-test-of-population-mean-with-unknown-variance}}
+
+h0: m \textgreater= m0
+
+t = (xBar - m0) / ( s / sqrt(n) )
+
+Reject h0 if t \textgreater= tα
+
+\hypertarget{problem-14}{%
+\subsection{Problem}\label{problem-14}}
+
+Suppose the food label on a cookie bag states that there is at most 2
+grams of saturated fat in a single cookie. In a sample of 25 cookies, it
+is found that the mean amount of saturated fat per cookie is 2.1 grams.
+Assume that the sample population standard deviation is 0. grams. At
+0.05 significance level, we can reject the claim on the food label.
+
+\hypertarget{solution-16}{%
+\subsubsection{Solution}\label{solution-16}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{n }\OtherTok{=} \DecValTok{25}
+\NormalTok{xbar }\OtherTok{=} \FloatTok{2.1}
+\NormalTok{m0 }\OtherTok{=} \DecValTok{2}
+\NormalTok{s }\OtherTok{=} \FloatTok{0.3}
+\NormalTok{t }\OtherTok{=}\NormalTok{ (xbar }\SpecialCharTok{{-}}\NormalTok{ m0)}\SpecialCharTok{/}\NormalTok{(s}\SpecialCharTok{/}\FunctionTok{sqrt}\NormalTok{(n))}
+
+\NormalTok{t}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.666667
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a }\OtherTok{=}\NormalTok{ .}\DecValTok{05}
+\NormalTok{t.a }\OtherTok{=} \FunctionTok{qt}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ a, }\AttributeTok{df =}\NormalTok{ n }\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}
+
+\NormalTok{t.a}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.710882
+\end{verbatim}
+
+1.710882 \textgreater{} 1.666667 We \textbf{reject} the null hypothesis.
+
+\hypertarget{two-tailed-test-of-population-mean-with-unknown-variance}{%
+\section{Two-Tailed Test of Population Mean with Unknown
+Variance}\label{two-tailed-test-of-population-mean-with-unknown-variance}}
+
+h0: m = m0
+
+t = (xBar - m0) / ( s / sqrt(n) )
+
+Reject h0 if t \textgreater= \textbar{} tα \textbar{}
+
+\hypertarget{problem-15}{%
+\subsection{Problem}\label{problem-15}}
+
+Suppose the mean weight of King Penguins found in an Antarctic colony
+last year was 15.4 kg. In a sample of 25 penguins same time this year in
+the same colony, the mean penguin weight is 14.6 kg. Assume the sample
+standard deviation is 2.5 kg. At .05 significance level, can we reject
+the null hypothesis that the mean penguin weight does not differ from
+last year?
+
+\hypertarget{solution-17}{%
+\subsubsection{Solution}\label{solution-17}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{xbar }\OtherTok{=} \FloatTok{14.6}
+\NormalTok{m0 }\OtherTok{=} \FloatTok{15.4}
+\NormalTok{s }\OtherTok{=} \FloatTok{2.5}
+\NormalTok{n }\OtherTok{=} \DecValTok{25}
+\NormalTok{t }\OtherTok{=}\NormalTok{ (xbar}\SpecialCharTok{{-}}\NormalTok{m0)}\SpecialCharTok{/}\NormalTok{(s}\SpecialCharTok{/}\FunctionTok{sqrt}\NormalTok{(n))}
+
+\NormalTok{t}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -1.6
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a }\OtherTok{=}\NormalTok{ .}\DecValTok{05}
+\NormalTok{t.a.half }\OtherTok{=} \FunctionTok{qt}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ a}\SpecialCharTok{/}\DecValTok{2}\NormalTok{, }\AttributeTok{df =}\NormalTok{ n}\DecValTok{{-}1}\NormalTok{)}
+\FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{t.a.half, t.a.half)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -2.063899  2.063899
+\end{verbatim}
+
+-2.063899 \textless= -1.6 \textless= 2.063899\\
+We \textbf{do not reject} the null hypothesis.
+
+\hypertarget{lower-tail-test-of-population-proportion}{%
+\section{Lower Tail Test of Population
+Proportion}\label{lower-tail-test-of-population-proportion}}
+
+h0: p \textgreater= p0
+
+z = (pbar - p0)/sqrt(p0*(1 - p0)/n)
+
+Reject h0 if z \textless= -zα
+
+\hypertarget{problem-16}{%
+\subsection{Problem}\label{problem-16}}
+
+Suppose 60\% of citizens voted in last election. 85 out of 148 people in
+a telephone survey said that they voted in current election. At 0.5
+significance level, can we reject the null hypothesis that the
+proportion of voters in the population is above 60\% this year?
+
+\hypertarget{solution-18}{%
+\subsubsection{Solution}\label{solution-18}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pbar }\OtherTok{=} \DecValTok{85}\SpecialCharTok{/}\DecValTok{148}
+\NormalTok{p0 }\OtherTok{=} \FloatTok{0.6}
+\NormalTok{n }\OtherTok{=} \DecValTok{148}
+\NormalTok{z }\OtherTok{=}\NormalTok{ (pbar }\SpecialCharTok{{-}}\NormalTok{ p0)}\SpecialCharTok{/}\FunctionTok{sqrt}\NormalTok{(p0}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ p0)}\SpecialCharTok{/}\NormalTok{n)}
+
+\NormalTok{z}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -0.6375983
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a }\OtherTok{=}\NormalTok{ .}\DecValTok{05}
+\NormalTok{z.a }\OtherTok{=} \FunctionTok{qnorm}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ a)}
+
+\SpecialCharTok{{-}}\NormalTok{z.a}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -1.644854
+\end{verbatim}
+
+-0.6375983 !\textless{} -1.644854\\
+We \textbf{do not reject} the null hypothesis.
+
+\hypertarget{alternative-solution}{%
+\subsubsection{Alternative Solution}\label{alternative-solution}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p }\OtherTok{=} \FunctionTok{pnorm}\NormalTok{(z)}
+
+\NormalTok{p}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.2618676
+\end{verbatim}
+
+0.2618676 \textgreater{} .05\\
+We \textbf{do not reject} the null hypothesis.
+
+\hypertarget{upper-tail-test-of-population-proportion}{%
+\section{Upper Tail Test of Population
+Proportion}\label{upper-tail-test-of-population-proportion}}
+
+h0: p \textgreater= p0
+
+z = (pbar - p0)/sqrt(p0*(1 - p0)/n)
+
+Reject h0 if z \textgreater= zα
+
+\hypertarget{problem-17}{%
+\subsection{Problem}\label{problem-17}}
+
+Suppose that 12\% of apples harvested in an orchard last year was
+rotten. 30 out of 214 apples in a harvest sample this year turns out to
+be rotten. At .05 significance level, can we reject the null hypothesis
+that the proportion of rotten apples in harvest stays below 12\% this
+year?
+
+\hypertarget{solution-19}{%
+\subsubsection{Solution}\label{solution-19}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pbar }\OtherTok{=} \DecValTok{30}\SpecialCharTok{/}\DecValTok{214}
+\NormalTok{p0 }\OtherTok{=} \FloatTok{0.12}
+\NormalTok{n }\OtherTok{=} \DecValTok{214}
+
+\NormalTok{z }\OtherTok{=}\NormalTok{ (pbar }\SpecialCharTok{{-}}\NormalTok{ p0)}\SpecialCharTok{/}\FunctionTok{sqrt}\NormalTok{(p0}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ p0)}\SpecialCharTok{/}\NormalTok{n)}
+
+\NormalTok{z}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.908751
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a }\OtherTok{=} \FloatTok{0.05}
+\NormalTok{z.a }\OtherTok{=} \FunctionTok{qnorm}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ a)}
+
+\NormalTok{z.a}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.644854
+\end{verbatim}
+
+0.908751 !\textless{} 1.644854\\
+We \textbf{do not reject} the null hypothesis.
+
+\hypertarget{alternative-solution-1}{%
+\subsubsection{Alternative Solution}\label{alternative-solution-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p }\OtherTok{=} \FunctionTok{pnorm}\NormalTok{(z, }\AttributeTok{lower.tail =} \ConstantTok{FALSE}\NormalTok{)}
+
+\NormalTok{p}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.1817408
+\end{verbatim}
+
+0.1817408 \textgreater{} 0.05\\
+We \textbf{do not reject} the null hypothesis.
+
+\hypertarget{two-tailed-test-of-population-proportion}{%
+\section{Two-Tailed Test of Population
+Proportion}\label{two-tailed-test-of-population-proportion}}
+
+h0: p \textgreater= p0
+
+z = (pbar - p0)/sqrt(p0*(1 - p0)/n)
+
+Reject h0 if z \textgreater= \textbar{} zα \textbar{}
+
+\hypertarget{problem-18}{%
+\subsection{Problem}\label{problem-18}}
+
+Suppose a coin toss turns up 12 heads out of 30 trials. At .05
+significance level, can one reject the null hypothesis that the coin
+toss is fair?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pbar }\OtherTok{=} \DecValTok{12}\SpecialCharTok{/}\DecValTok{30}
+\NormalTok{p0 }\OtherTok{=}\NormalTok{ .}\DecValTok{5}
+\NormalTok{n }\OtherTok{=} \DecValTok{30}
+\NormalTok{z }\OtherTok{=}\NormalTok{ (pbar }\SpecialCharTok{{-}}\NormalTok{ p0)}\SpecialCharTok{/}\FunctionTok{sqrt}\NormalTok{(p0}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ p0)}\SpecialCharTok{/}\NormalTok{n)}
+
+\NormalTok{z}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -1.095445
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a }\OtherTok{=}\NormalTok{ .}\DecValTok{05}
+\NormalTok{z.a.half }\OtherTok{=} \FunctionTok{qnorm}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ a}\SpecialCharTok{/}\DecValTok{2}\NormalTok{)}
+\FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{z.a.half, z.a.half)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -1.959964  1.959964
+\end{verbatim}
+
+-1.959964 \textless= -1.095445 \textless= 1.959964\\
+We \textbf{do not reject} the null hypothesis.
+
+\hypertarget{alternative-solution-2}{%
+\subsubsection{Alternative Solution}\label{alternative-solution-2}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p }\OtherTok{=} \DecValTok{2}\SpecialCharTok{*}\FunctionTok{pnorm}\NormalTok{(z, }\AttributeTok{lower.tail =} \ConstantTok{FALSE}\NormalTok{)}
+
+\NormalTok{p}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.726678
+\end{verbatim}
+
+1.726678 \textgreater{} 0.05\\
+We \textbf{do not reject} the null hypothesis.
+
+\hypertarget{t-test}{%
+\section{T-Test}\label{t-test}}
+
+h0: mD = delta
+
+T0 = (DBar - delta) / (SD/sqrt(n))
+
+\hypertarget{problem-19}{%
+\subsection{Problem}\label{problem-19}}
+
+From the following data set, test whether two serum uric acid population
+have the same mean.
+
+sample1 : 1.2, 0.8, 1.1, 0.7, 0.9, 1.1, 1.5, 0.8, 1.6, 0.9 sample2 :
+1.7, 1.5, 2.0, 2.1, 1.1, 0.9, 2.2, 1.8, 1.3, 1.5
+
+\hypertarget{solution-20}{%
+\subsubsection{Solution}\label{solution-20}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sample1 }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\FloatTok{1.2}\NormalTok{, }\FloatTok{0.8}\NormalTok{, }\FloatTok{1.1}\NormalTok{, }\FloatTok{0.7}\NormalTok{, }\FloatTok{0.9}\NormalTok{, }\FloatTok{1.1}\NormalTok{, }\FloatTok{1.5}\NormalTok{, }\FloatTok{0.8}\NormalTok{, }\FloatTok{1.6}\NormalTok{, }\FloatTok{0.9}\NormalTok{)}
+\NormalTok{sample2 }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\FloatTok{1.7}\NormalTok{, }\FloatTok{1.5}\NormalTok{, }\FloatTok{2.0}\NormalTok{, }\FloatTok{2.1}\NormalTok{, }\FloatTok{1.1}\NormalTok{, }\FloatTok{0.9}\NormalTok{, }\FloatTok{2.2}\NormalTok{, }\FloatTok{1.8}\NormalTok{, }\FloatTok{1.3}\NormalTok{, }\FloatTok{1.5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{t.test}\NormalTok{(sample1, sample2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Welch Two Sample t-test
+## 
+## data:  sample1 and sample2
+## t = -3.3046, df = 16.145, p-value = 0.004431
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -0.902565 -0.197435
+## sample estimates:
+## mean of x mean of y 
+##      1.06      1.61
+\end{verbatim}
+
+0.004431 \textless{} 0.05\\
+We \textbf{reject} the null hypothesis.
+
+\hypertarget{f-test}{%
+\section{F-Test}\label{f-test}}
+
+h0: (σ1)\^{}2 = (σ2)\^{}2
+
+f0 = (s1)\^{}2 / (s2)\^{}2
+
+\hypertarget{problem-20}{%
+\subsection{Problem}\label{problem-20}}
+
+A quality control supervisor for an automobile manufacturer is concerned
+with uniformity in the number of defects in cars coming off the assembly
+line. If one assembly line has significantly more variability in the
+number of defects, then changes have to be made.
+
+A -\textgreater{} N = 23 mean = 15 Std. Dev = 20\\
+B -\textgreater{} N = 23 mean = 17 Std. Dev = 16
+
+\hypertarget{solution-21}{%
+\subsubsection{Solution}\label{solution-21}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{s1 }\OtherTok{=} \DecValTok{20}
+\NormalTok{s2 }\OtherTok{=} \DecValTok{16}
+
+\NormalTok{N }\OtherTok{=} \DecValTok{23}
+
+\NormalTok{df }\OtherTok{=}\NormalTok{ N }\SpecialCharTok{{-}} \DecValTok{1}
+
+\NormalTok{F }\OtherTok{=}\NormalTok{ s1}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{/}\NormalTok{ s2}\SpecialCharTok{\^{}}\DecValTok{2}
+
+\NormalTok{F}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.5625
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{critical\_val }\OtherTok{=} \FunctionTok{qf}\NormalTok{(}\FloatTok{0.05}\NormalTok{, df, df, }\AttributeTok{lower.tail =} \ConstantTok{FALSE}\NormalTok{)}
+
+\NormalTok{critical\_val}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.04777
+\end{verbatim}
+
+1.5625 \textless{} 2.04777\\
+We \textbf{do not reject} the null hypothesis.
+
+\hypertarget{paired-t-test}{%
+\section{Paired T-Test}\label{paired-t-test}}
+
+h0 = mD = 0
+
+t0 = dBar/ (sd / sqrt(n))
+
+\hypertarget{problem-1-2}{%
+\subsection{Problem 1}\label{problem-1-2}}
+
+A school of athletes has been taken a new instructor and want to test
+the effectiveness of the new type of training proposed by comparing the
+average time of 10 runners in the 200 meters and the time in seconds
+before and after training for each athletes is given below.
+
+Before Training : 13.8,14.4,13.7,16.5,18.1,20.1,13.5,16.2,15.3,12.2
+
+After Training : 13.6,14.5,12.9,16.1,17.7,20.912.9,16.8,16.9,12.0
+
+\hypertarget{solution-22}{%
+\subsubsection{Solution}\label{solution-22}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\FloatTok{13.8}\NormalTok{,}\FloatTok{14.4}\NormalTok{,}\FloatTok{13.7}\NormalTok{,}\FloatTok{16.5}\NormalTok{,}\FloatTok{18.1}\NormalTok{,}\FloatTok{20.1}\NormalTok{,}\FloatTok{13.5}\NormalTok{,}\FloatTok{16.2}\NormalTok{,}\FloatTok{15.3}\NormalTok{,}\FloatTok{12.2}\NormalTok{)}
+\NormalTok{y }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\FloatTok{13.6}\NormalTok{,}\FloatTok{14.5}\NormalTok{,}\FloatTok{12.9}\NormalTok{,}\FloatTok{16.1}\NormalTok{,}\FloatTok{17.7}\NormalTok{,}\FloatTok{20.9}\NormalTok{,}\FloatTok{12.9}\NormalTok{,}\FloatTok{16.8}\NormalTok{,}\FloatTok{16.9}\NormalTok{,}\FloatTok{12.0}\NormalTok{)}
+
+\FunctionTok{t.test}\NormalTok{(x,y, }\AttributeTok{paired=}\ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Paired t-test
+## 
+## data:  x and y
+## t = -0.21331, df = 9, p-value = 0.8358
+## alternative hypothesis: true mean difference is not equal to 0
+## 95 percent confidence interval:
+##  -0.5802549  0.4802549
+## sample estimates:
+## mean difference 
+##           -0.05
+\end{verbatim}
+
+As p = 0.8358 \textgreater{} 0.05, h0: m1 - m2 = 0 is \textbf{not
+rejected}.
+
+\hypertarget{problem-2-2}{%
+\subsection{Problem 2}\label{problem-2-2}}
+
+A firm manufacturing rivers wants to limit variations in their length as
+much as possible. The lengths(in cm) of 10 rivers manufactured by a new
+process are given as :
+
+2.15,1.99,2.05,2.12,2.17,2.01,1.98,2.03,2.25,1.93
+
+Examine whether the new process can be considered superior to the old,
+if the old population has standard deviation 0.145 cm.
+
+\hypertarget{solution-23}{%
+\subsubsection{Solution}\label{solution-23}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\FloatTok{2.15}\NormalTok{,}\FloatTok{1.99}\NormalTok{,}\FloatTok{2.05}\NormalTok{,}\FloatTok{2.12}\NormalTok{,}\FloatTok{2.17}\NormalTok{,}\FloatTok{2.01}\NormalTok{,}\FloatTok{1.98}\NormalTok{,}\FloatTok{2.03}\NormalTok{,}\FloatTok{2.25}\NormalTok{,}\FloatTok{1.93}\NormalTok{)}
+\NormalTok{n }\OtherTok{=} \DecValTok{10}
+\NormalTok{df }\OtherTok{=}\NormalTok{ n}\DecValTok{{-}1}
+\NormalTok{sigma0 }\OtherTok{=} \FloatTok{0.145}
+\NormalTok{v }\OtherTok{=} \FunctionTok{var}\NormalTok{(x)}
+
+\NormalTok{v}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.01010667
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{chitest }\OtherTok{=}\NormalTok{ df}\SpecialCharTok{*}\NormalTok{v}\SpecialCharTok{/}\NormalTok{(sigma0}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+
+\NormalTok{chitest}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4.326278
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{alpha }\OtherTok{=} \FloatTok{0.05}
+
+\FunctionTok{qchisq}\NormalTok{(alpha,df, }\AttributeTok{lower.tail=}\ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3.325113
+\end{verbatim}
+
+As 4.326278 \textgreater{} 3.325113 , h0 is \textbf{not rejected}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{alpha }\OtherTok{=} \FloatTok{0.01}
+
+\FunctionTok{qchisq}\NormalTok{(alpha,df, }\AttributeTok{lower.tail=}\ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.087901
+\end{verbatim}
+
+As 4.326278 \textgreater{} 2.087901 , h0 is \textbf{not rejected}.
+
+\hypertarget{chi-squared-test-for-goodness-of-fit}{%
+\section{Chi Squared Test for Goodness of
+Fit}\label{chi-squared-test-for-goodness-of-fit}}
+
+chiSq = Sum( (fi - ei)\^{}2 / ei )
+
+\hypertarget{problem-21}{%
+\subsection{Problem}\label{problem-21}}
+
+The following shows the distribution of the digits in the number chosen
+random from a telephone directory:\\
+Frequency : 3026,3107,2997,2996,3075,2933,3107,2972,2964,2853
+
+Expected : 3000,3000,3000,3000,3000,3000,3000,3000,3000,3000
+
+\hypertarget{solution-24}{%
+\subsubsection{Solution}\label{solution-24}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{frequency }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\DecValTok{3026}\NormalTok{,}\DecValTok{3107}\NormalTok{,}\DecValTok{2997}\NormalTok{,}\DecValTok{2996}\NormalTok{,}\DecValTok{3075}\NormalTok{,}\DecValTok{2933}\NormalTok{,}\DecValTok{3107}\NormalTok{,}\DecValTok{2972}\NormalTok{,}\DecValTok{2964}\NormalTok{,}\DecValTok{2853}\NormalTok{)}
+\NormalTok{expected }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\DecValTok{3000}\NormalTok{,}\DecValTok{3000}\NormalTok{,}\DecValTok{3000}\NormalTok{,}\DecValTok{3000}\NormalTok{,}\DecValTok{3000}\NormalTok{,}\DecValTok{3000}\NormalTok{,}\DecValTok{3000}\NormalTok{,}\DecValTok{3000}\NormalTok{,}\DecValTok{3000}\NormalTok{,}\DecValTok{3000}\NormalTok{)}
+
+
+\FunctionTok{chisq.test}\NormalTok{(frequency, }\AttributeTok{p=}\NormalTok{ expected, }\AttributeTok{rescale.p =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Chi-squared test for given probabilities
+## 
+## data:  frequency
+## X-squared = 19.085, df = 9, p-value = 0.02448
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\FloatTok{0.1}\NormalTok{,}\FloatTok{0.1}\NormalTok{,}\FloatTok{0.1}\NormalTok{,}\FloatTok{0.1}\NormalTok{,}\FloatTok{0.1}\NormalTok{,}\FloatTok{0.1}\NormalTok{,}\FloatTok{0.1}\NormalTok{,}\FloatTok{0.1}\NormalTok{,}\FloatTok{0.1}\NormalTok{,}\FloatTok{0.1}\NormalTok{)}
+
+
+\FunctionTok{chisq.test}\NormalTok{(frequency,}\AttributeTok{p=}\NormalTok{p)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Chi-squared test for given probabilities
+## 
+## data:  frequency
+## X-squared = 19.085, df = 9, p-value = 0.02448
+\end{verbatim}
+
+\hypertarget{chi-squared-test-of-independence}{%
+\section{Chi Squared Test of
+Independence}\label{chi-squared-test-of-independence}}
+
+chiSq = Sum( (fij - eij)\^{}2 / eij )
+
+\hypertarget{problem-1-3}{%
+\subsection{Problem 1}\label{problem-1-3}}
+
+In order to determine the possible effect of a chemical treatment on the
+rate of germination of cotton seeds, a pot culture was conducted. The
+results are given below. Significance at 0.05.
+
+\hypertarget{solution-25}{%
+\subsection{Solution}\label{solution-25}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Sample2 }\OtherTok{=} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{118}\NormalTok{, }\DecValTok{120}\NormalTok{, }\DecValTok{22}\NormalTok{, }\DecValTok{40}\NormalTok{), }\AttributeTok{nrow =} \DecValTok{2}\NormalTok{, }\AttributeTok{ncol =} \DecValTok{2}\NormalTok{)}
+
+\NormalTok{Sample2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2]
+## [1,]  118   22
+## [2,]  120   40
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{chisq.test}\NormalTok{(Sample2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Pearson's Chi-squared test with Yates' continuity correction
+## 
+## data:  Sample2
+## X-squared = 3.3808, df = 1, p-value = 0.06596
+\end{verbatim}
+
+As p = 0.06596 \textgreater{} 0.05, h0: Attributes are independent is
+\textbf{not rejected}.
+
+\hypertarget{problem-2-3}{%
+\subsection{Problem 2}\label{problem-2-3}}
+
+The severity of a disease and blood group were studied in a research
+project.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DisxBlood }\OtherTok{=} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{51}\NormalTok{, }\DecValTok{105}\NormalTok{, }\DecValTok{384}\NormalTok{, }\DecValTok{40}\NormalTok{, }\DecValTok{103}\NormalTok{, }\DecValTok{527}\NormalTok{, }\DecValTok{10}\NormalTok{, }\DecValTok{25}\NormalTok{, }\DecValTok{125}\NormalTok{, }\DecValTok{9}\NormalTok{, }\DecValTok{17}\NormalTok{, }\DecValTok{104}\NormalTok{), }\AttributeTok{nrow =} \DecValTok{3}\NormalTok{, }\AttributeTok{ncol =} \DecValTok{4}\NormalTok{)}
+
+\NormalTok{DisxBlood}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3] [,4]
+## [1,]   51   40   10    9
+## [2,]  105  103   25   17
+## [3,]  384  527  125  104
+\end{verbatim}
+
+\hypertarget{solution-26}{%
+\subsubsection{Solution}\label{solution-26}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{chisq.test}\NormalTok{(DisxBlood)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Pearson's Chi-squared test
+## 
+## data:  DisxBlood
+## X-squared = 12.237, df = 6, p-value = 0.05689
+\end{verbatim}
+
+As p = 0.2003 \textgreater{} 0.05, h0: Attributes are independent is
+\textbf{not rejected}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{qchisq}\NormalTok{(}\FloatTok{0.95}\NormalTok{, }\AttributeTok{df =} \DecValTok{6}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 12.59159
+\end{verbatim}
+
+As chisq = 12.237 \textless{} chisq(table) = 12.59159, h0: Attributes
+are independent is \textbf{not rejected}.
+
+\hypertarget{problem-3-1}{%
+\subsection{Problem 3}\label{problem-3-1}}
+
+A public opinion poll surveyed a simple random sample of 1000 voters.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GenxParty }\OtherTok{=} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{220}\NormalTok{, }\DecValTok{270}\NormalTok{, }\DecValTok{170}\NormalTok{, }\DecValTok{320}\NormalTok{, }\DecValTok{70}\NormalTok{, }\DecValTok{70}\NormalTok{), }\AttributeTok{nrow =} \DecValTok{2}\NormalTok{, }\AttributeTok{ncol =} \DecValTok{3}\NormalTok{)}
+
+\NormalTok{GenxParty}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3]
+## [1,]  220  170   70
+## [2,]  270  320   70
+\end{verbatim}
+
+\hypertarget{solution-27}{%
+\subsubsection{Solution}\label{solution-27}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{chisq.test}\NormalTok{(GenxParty)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Pearson's Chi-squared test
+## 
+## data:  GenxParty
+## X-squared = 15.81, df = 2, p-value = 0.0003688
+\end{verbatim}
+
+As p = 0.0003688 \textless{} 0.05, h0: Attributes are independent is
+\textbf{rejected}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{qchisq}\NormalTok{(}\FloatTok{0.95}\NormalTok{, }\AttributeTok{df =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5.991465
+\end{verbatim}
+
+As chisq = 15.81 \textless{} chisq(table) = 5.991465, h0: Attributes are
+independent is \textbf{rejected}.
+
+\end{document}
